@@ -36,14 +36,9 @@ double *gauss(double **a, double *y, int n) {
             return nullptr;
         }
         for (int j = 0; j < n; j++) {
-            /*double res = a[k][j];
-            a[k][j] = a[index][j];
-            a[index][j] = res;*/
             swap(a[k][j], a[index][j]);
         }
-        double res = y[k];
-        y[k] = y[index];
-        y[index] = res;
+        swap(y[k],y[index]);
 
         for (int i = k; i < n; i++) {
             double res = a[i][k];
@@ -59,7 +54,6 @@ double *gauss(double **a, double *y, int n) {
         }
         k++;
     }
-
     for (k = n - 1; k >= 0; k--) {
         x[k] = y[k];
         for (int i = 0; i < k; i++)
@@ -77,13 +71,8 @@ void in(double** a, double* y, int n, ifstream& fIn){
             }else{
                 fIn >> y[i];
             }
-
         }
-
     }
-    /*for(int i = 0; i < n;i++){
-        fIn >> y[i];
-    }*/
 }
 
 
