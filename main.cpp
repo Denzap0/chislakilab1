@@ -6,7 +6,7 @@
 using namespace std;
 
 
-void matrixOut(double **a, double *y, int n, ofstream& fOut) {
+void matrixOut(double **a, double *y, int n, ofstream &fOut) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
             fOut << a[i][j] << "*x" << j;
@@ -17,7 +17,7 @@ void matrixOut(double **a, double *y, int n, ofstream& fOut) {
     }
 }
 
-double *gauss(double **a, double *y, int n) {
+double *sle(double **a, double *y, int n) {
     double *x, max;
     int k, index;
     const double eps = 0.000001;
@@ -38,7 +38,7 @@ double *gauss(double **a, double *y, int n) {
         for (int j = 0; j < n; j++) {
             swap(a[k][j], a[index][j]);
         }
-        swap(y[k],y[index]);
+        swap(y[k], y[index]);
 
         for (int i = k; i < n; i++) {
             double res = a[i][k];
@@ -47,7 +47,7 @@ double *gauss(double **a, double *y, int n) {
                 a[i][j] /= res;
             y[i] /= res;
             if (i == k) continue;
-            for (int j = 0; j < n; j++){
+            for (int j = 0; j < n; j++) {
                 a[i][j] -= a[k][j];
             }
             y[i] -= y[k];
@@ -62,13 +62,13 @@ double *gauss(double **a, double *y, int n) {
     return x;
 }
 
-void in(double** a, double* y, int n, ifstream& fIn){
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j < n + 1; j++){
-            if(j < n){
+void in(double **a, double *y, int n, ifstream &fIn) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n + 1; j++) {
+            if (j < n) {
                 fIn >> a[i][j];
 
-            }else{
+            } else {
                 fIn >> y[i];
             }
         }
@@ -76,17 +76,18 @@ void in(double** a, double* y, int n, ifstream& fIn){
 }
 
 
-void out(double* x, double **a, double *y, int n, ofstream& fOut){
+void out(double *x, double **a, double *y, int n, ofstream &fOut) {
 
-    if(x == nullptr){
+    if (x == nullptr) {
         fOut << "UNDEFINED";
-    }else{
+    } else {
 
         for (int i = 0; i < n; i++)
             fOut << "x" << i << " =" << x[i] << endl;
     }
 
 }
+
 int main() {
     double **a, *y, *x;
     int n;
@@ -100,8 +101,8 @@ int main() {
     in(a, y, n, fIn);
     fIn.close();
     ofstream fOut("/Users/macbook/CLionProjects/untitled/Answer.txt");
-    matrixOut(a, y, n,fOut);
-    x = gauss(a, y, n);
+    matrixOut(a, y, n, fOut);
+    x = sle(a, y, n);
     out(x, a, y, n, fOut);
     fOut.close();
     return 0;
