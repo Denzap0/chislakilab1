@@ -63,7 +63,7 @@ double *sle(vector<vector <double>> a, vector <double> y, int n) {
     return x;
 }
 
-void in(vector <vector <double>> a, vector <double> y, int n, ifstream &fIn) {
+void in(vector <vector <double>> &a, vector <double> &y, int n, ifstream &fIn) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n + 1; j++) {
             if (j < n) {
@@ -94,7 +94,7 @@ int main() {
     int n;
     ifstream fIn("Matrix.txt");
     fIn >> n;
-    vector<vector<double>> a1;
+    vector<vector<double>> a1(n,vector<double>(n,n) );
     vector<double> a2;
     in(a1, a2, n, fIn);
     fIn.close();
