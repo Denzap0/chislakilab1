@@ -1,6 +1,7 @@
 #include <iostream>
-#include "cmath"
-#include "fstream"
+#include <cmath>
+#include <fstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -32,12 +33,13 @@ double *gauss(double **a, double *y, int n) {
             }
         }
         if (max < eps) {
-            return 0;
+            return nullptr;
         }
         for (int j = 0; j < n; j++) {
-            double res = a[k][j];
+            /*double res = a[k][j];
             a[k][j] = a[index][j];
-            a[index][j] = res;
+            a[index][j] = res;*/
+            swap(a[k][j], a[index][j]);
         }
         double res = y[k];
         y[k] = y[index];
@@ -50,8 +52,9 @@ double *gauss(double **a, double *y, int n) {
                 a[i][j] /= res;
             y[i] /= res;
             if (i == k) continue;
-            for (int j = 0; j < n; j++)
+            for (int j = 0; j < n; j++){
                 a[i][j] -= a[k][j];
+            }
             y[i] -= y[k];
         }
         k++;
@@ -67,24 +70,31 @@ double *gauss(double **a, double *y, int n) {
 
 void in(double** a, double* y, int n, ifstream& fIn){
     for(int i = 0; i < n; i++){
-        for(int j = 0; j < n; j++){
-            fIn >> a[i][j];
+        for(int j = 0; j < n + 1; j++){
+            if(j < n){
+                fIn >> a[i][j];
+
+            }else{
+                fIn >> y[i];
+            }
+
         }
+
     }
-    for(int i = 0; i < n;i++){
+    /*for(int i = 0; i < n;i++){
         fIn >> y[i];
-    }
+    }*/
 }
 
 
 void out(double* x, double **a, double *y, int n, ofstream& fOut){
 
-    if(x == 0){
+    if(x == nullptr){
         fOut << "UNDEFINED";
     }else{
 
         for (int i = 0; i < n; i++)
-            fOut << "x" << i << " = " << x[i] << endl;
+            fOut << "x" << i << " =" << x[i] << endl;
     }
 
 }

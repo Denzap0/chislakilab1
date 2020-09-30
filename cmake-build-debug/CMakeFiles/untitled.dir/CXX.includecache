@@ -10,7 +10,9 @@
 iostream
 -
 cmath
-/Users/macbook/CLionProjects/untitled/cmath
+-
 fstream
-/Users/macbook/CLionProjects/untitled/fstream
+-
+algorithm
+-
 
