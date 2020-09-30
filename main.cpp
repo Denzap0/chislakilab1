@@ -2,11 +2,12 @@
 #include <cmath>
 #include <fstream>
 #include <algorithm>
+#include <vector>
 
 using namespace std;
 
 
-void matrixOut(double **a, double *y, int n, ofstream &fOut) {
+void matrixOut(vector <vector <double>> a, vector <double> y, int n, ofstream &fOut) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
             fOut << a[i][j] << "*x" << j;
@@ -17,7 +18,7 @@ void matrixOut(double **a, double *y, int n, ofstream &fOut) {
     }
 }
 
-double *sle(double **a, double *y, int n) {
+double *sle(vector<vector <double>> a, vector <double> y, int n) {
     double *x, max;
     int k, index;
     const double eps = 0.000001;
@@ -62,7 +63,7 @@ double *sle(double **a, double *y, int n) {
     return x;
 }
 
-void in(double **a, double *y, int n, ifstream &fIn) {
+void in(vector <vector <double>> a, vector <double> y, int n, ifstream &fIn) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n + 1; j++) {
             if (j < n) {
@@ -76,7 +77,7 @@ void in(double **a, double *y, int n, ifstream &fIn) {
 }
 
 
-void out(double *x, double **a, double *y, int n, ofstream &fOut) {
+void out(double *x, vector <vector <double>> a, vector <double> y, int n, ofstream &fOut) {
 
     if (x == nullptr) {
         fOut << "UNDEFINED";
@@ -89,22 +90,20 @@ void out(double *x, double **a, double *y, int n, ofstream &fOut) {
 }
 
 int main() {
-    double **a, *y, *x;
+    double *x;
     int n;
-    ifstream fIn("/Users/macbook/CLionProjects/untitled/Matrix.txt");
+    ifstream fIn("Matrix.txt");
     fIn >> n;
-    a = new double *[n];
-    y = new double[n];
-    for (int i = 0; i < n; i++) {
-        a[i] = new double[n];
-    }
-    in(a, y, n, fIn);
+    vector<vector<double>> a1;
+    vector<double> a2;
+    in(a1, a2, n, fIn);
     fIn.close();
-    ofstream fOut("/Users/macbook/CLionProjects/untitled/Answer.txt");
-    matrixOut(a, y, n, fOut);
-    x = sle(a, y, n);
-    out(x, a, y, n, fOut);
+    ofstream fOut("Answer.txt");
+    matrixOut(a1, a2, n, fOut);
+    x = sle(a1, a2, n);
+    out(x, a1, a2, n, fOut);
     fOut.close();
+    delete[] x;
     return 0;
 }
 

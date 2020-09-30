@@ -81,12 +81,6 @@
 		<Unit filename="/Users/macbook/CLionProjects/untitled/main.cpp">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/Users/macbook/CLionProjects/untitled/tes.cpp">
-			<Option target="untitled"/>
-		</Unit>
-		<Unit filename="/Users/macbook/CLionProjects/untitled/test.cpp">
-			<Option target="untitled"/>
-		</Unit>
 		<Unit filename="/Users/macbook/CLionProjects/untitled/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

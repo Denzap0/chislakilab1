@@ -3,7 +3,3 @@
 
 CMakeFiles/untitled.dir/main.cpp.o: ../main.cpp
 
-CMakeFiles/untitled.dir/tes.cpp.o: ../tes.cpp
-
-CMakeFiles/untitled.dir/test.cpp.o: ../test.cpp
-
